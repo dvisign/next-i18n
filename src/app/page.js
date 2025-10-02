@@ -1,7 +1,12 @@
+"use client";
 import Image from "next/image";
+import {useTranslation} from "react-i18next";
+import {setLanguage, readLang} from "@/modules/i18n";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const {t} = useTranslation();
+  const lang = readLang();
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -14,10 +19,8 @@ export default function Home() {
           priority
         />
         <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
+          <li>{t("start")}</li>
+          <li>{t("save")}</li>
         </ol>
 
         <div className={styles.ctas}>
@@ -25,8 +28,7 @@ export default function Home() {
             className={styles.primary}
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <Image
               className={styles.logo}
               src="/vercel.svg"
@@ -34,15 +36,21 @@ export default function Home() {
               width={20}
               height={20}
             />
-            Deploy now
+            {t("deploy")}
           </a>
           <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
+            className={styles.secondary}>
+            {t("docs")}
+          </a>
+        </div>
+        <div className={styles.ctas}>
+          <a
+            className={styles.primary}
+            onClick={() => setLanguage(lang === "en" ? "ko" : "en")}>
+            {t("change")}
           </a>
         </div>
       </main>
@@ -50,8 +58,7 @@ export default function Home() {
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           <Image
             aria-hidden
             src="/file.svg"
@@ -59,13 +66,12 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Learn
+          {t("learn")}
         </a>
         <a
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           <Image
             aria-hidden
             src="/window.svg"
@@ -73,13 +79,12 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Examples
+          {t("examples")}
         </a>
         <a
           href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           <Image
             aria-hidden
             src="/globe.svg"
@@ -87,7 +92,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to nextjs.org →
+          {t("go")} →
         </a>
       </footer>
     </div>
